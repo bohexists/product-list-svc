@@ -35,3 +35,16 @@ func (p *ProductServiceClient) FetchProducts(url string) (*proto.FetchResponse, 
 
 	return resp, nil
 }
+
+func (p *ProductServiceClient) ListProducts(page int32, pageSize int32) (*proto.ListResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	req := &proto.ListRequest{Page: page, PageSize: pageSize}
+	resp, err := p.client.List(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}

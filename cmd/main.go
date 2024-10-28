@@ -22,7 +22,5 @@ func main() {
 		log.Fatalf("Failed to fetch products: %v", err)
 	}
 
-	for _, product := range resp.Products {
-		fmt.Printf("Product: %s, Price: %f\n", product.Name, product.Price)
-	}
+	fmt.Println(resp)
 }
